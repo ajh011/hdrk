@@ -1,0 +1,348 @@
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%ONLY DIFFERENCE FROM HDR IS NO DOC CLASS INCLUDED%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+%  paper draft, symmetric hypergraphs, summer 2015 and summer 2016
+%% revision 4/2017 for submission to JPhysA
+%%%% this revision is for minor edits suggested by referees in 4/7/2017 report
+
+%% draft style for writing process
+
+
+
+%%%remove [titlepage] here for flush title
+%\documentclass[titlepage]{article}
+%\documentclass{revtex4-1}
+
+
+%%% revtex aip style for journal of mathematical physics
+%%% move \author and \title declarations before/after ``\begin{document}''
+%\documentclass[aip]{revtex4-1}
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+
+
+
+
+%%%%%%%%%%%PythonTex%%%%%%%%%%%%%%%%%%
+
+% Engine-specific settings
+% Detect pdftex/xetex/luatex, and load appropriate font packages.
+% This is inspired by the approach in the iftex package.
+% pdftex:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%if trouble remove % from next rows before % xetex:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   %\ifx\pdfmatch\undefined
+   %\else
+       %\usepackage[T1]{fontenc}
+       %\usepackage[utf8]{inputenc}
+   %\fi
+% xetex:
+%\ifx\XeTeXinterchartoks\undefined
+%\else
+    %\usepackage{fontspec}
+    %\defaultfontfeatures{Ligatures=TeX}
+%\fi
+% luatex:
+%\ifx\directlua\undefined
+%\else
+    %\usepackage{fontspec}
+%\fi
+% End engine-specific settings
+
+\usepackage{amsmath,amssymb}
+%\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage[svgnames]{xcolor}
+\usepackage{url}
+\urlstyle{same}
+
+\usepackage[makestderr]{pythontex}
+\restartpythontexsession{\thesection}
+
+
+\usepackage[framemethod=TikZ]{mdframed}
+
+\newcommand{\pytex}{Python\TeX}
+
+%%%%quick build setup user setting
+%%  here->    pdflatex -synctex=1 -interaction=nonstopmode %.tex|pythontex %.pytexcode|pdflatex -synctex=1 -interaction=nonstopmode %.tex|"C:/Program Files/Adobe/Reader 11.0/Reader/AcroRd32.exe" %.pdf
+
+%%%%%%%%%%%PythonTexEnd%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%% NOTE for J Math Phys submission 9/2016, had to comment out the next
+%%% line to get the paper to build correctly on their server
+%\pdfoutput=1
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{color}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{bbold}
+\usepackage{graphicx}
+%\usepackage{pdfpages}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{relsize}
+\usepackage{amsmath}
+\usepackage{kbordermatrix}
+
+\usepackage{graphicx}
+\usepackage{anyfontsize}
+\usepackage{color}
+\usepackage{epsfig}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+%\usepackage{xypic}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{array}
+%\usepackage{a0size}
+
+
+\usepackage{tikz}
+\usepackage{circuitikz}
+
+\usepackage{pgf,tikz,pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+
+\usepackage{mdframed}
+
+\usepackage{booktabs}
+\usepackage{chngpage}
+\usepackage{xcolor}
+\usepackage{colortbl}
+
+\usepackage{dashrule}
+
+\usepackage{todonotes}
+
+\usepackage{hyperref}
+
+\usepackage{sagetex}
+
+%\usepackage{xypic}
+%\input xy
+
+
+%%%%Blue Hyperlinks
+\hypersetup{colorlinks=true,linkcolor=blue, linktocpage}
+
+
+%\addtolength{\oddsidemargin}{.05in}
+%\addtolength{\topmargin}{-.50in}
+%\addtolength{\textheight}{1in}
+%\reversemarginpar
+%\addtolength{\headsep}{.25in}
+ 
+
+%\parskip = 5pt plus 0pt minus 0pt
+
+% invisible text ``spacer''
+\newcommand{\spacer}{\rule[0cm]{0cm}{0cm}}
+
+%%%%%%%%%%%%%%%% theorems, remarks and proofs %%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+
+\newcounter{statementnumber}
+\renewcommand{\thestatementnumber}{\arabic{section}.\arabic{statementnumber}}
+
+%thm environment
+\newenvironment{thm}[2]{\refstepcounter{statementnumber} \label{#2}
+%\par \noindent {\bf #1~\thestatementnumber.}  
+\par \noindent {\bf (\thestatementnumber) #1.}
+\begin{em}}{\end{em} \par}
+
+%rem environment
+\newenvironment{rem}[2]{\refstepcounter{statementnumber} \label{#2}
+\par \noindent {\bf (\thestatementnumber) #1.}
+}{\par}
+
+%\newcommand{\proofend}{$\rule{2mm}{2mm}$}
+
+\newcommand{\proofend}{\nopagebreak \hfill
+{\framebox{\rule{.5ex}{0ex}\rule{0ex}{.5ex}}} \par}
+
+\newenvironment{proof}{\par\noindent\textsc{Proof.}}{\nopagebreak\spacer\hfill $\square$}
+
+
+
+
+%%%%%%%%%%%%%%%%%% end of thm, rem, proof set up %%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%% placement of figures in the margin %%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{figurecount}
+%\renewcommand{\thefigurecount}{\thesection .\arabic{figurecount}}
+
+% command for figures in the margin
+% arguments: figure input file name, reference label, figure horizontal
+% offset, figure vertical offset, ``Figure'' label horizontal offset,
+% ``Figure'' label vertical offset, caption
+
+
+%%%%%Cell coloring for booktabs
+\makeatletter
+\newcommand{\ccell}[3][]{%
+  \kern-\fboxsep
+  \if\relax\detokenize{#1}\relax
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi
+  {\colorbox{#2}}%
+  {\colorbox[#1]{#2}}%
+  {#3}\kern-\fboxsep
+}
+\makeatother
+
+
+
+%%%%%%5
+
+\newcommand{\marginfig}[7]{
+\marginpar{
+\refstepcounter{figurecount}      % increment margin figure counter
+\label{#2}                        % label the figure
+\vspace*{#4}                      % vertical adjustment for figure
+\spacer\\
+\hspace*{#3}                      % horizontal adjustment for figure
+\input{#1}\\
+\vspace*{#6}                      % vertical adjustment for ``Figure'' label
+\spacer\\
+\hspace*{#5}                      % horizontal adjustment for ``Figure'' label
+\shortstack{
+Figure~\ref{#2}\\ #7
+}
+\spacer}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% capital D derivative symbol
+\def\D{\mbox{D}}
+% space for dx in integrands
+\def\d{\; d}
+% -1 exponent for inverse
+\def\inv{^{-1}}
+% composition of functions circle
+% \def\of{\, \mbox{\small{$\circ$}} \:}
+\def\of{\mathbin{\circ}}
+% shortcut for displaystyle
+\def\dsp{\displaystyle}
+% shortcut for displaystyle in math mode
+\def\mb{$\begin{displaystyle}}
+\def\me{\end{displaystyle}$\ }
+\def\id{\mbox{\rm id}}
+\def\Id{\mbox{\rm Id}}
+\def\wt{\mbox{\rm wt}}
+\def\glb{\mbox{\rm glb}}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\End}{End}
+\newcommand{\upk}{^{(k)}}
+\newcommand{\downk}{_{(k)}}
+\newcommand{\ket}[1]{\left| #1 \right\rangle}
+\newcommand{\bra}[1]{\left\langle #1 \right|}
+\newcommand{\inprod}[2]{\left\langle #1 | #2 \right\rangle}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\twotwo}[4]{\left[ \begin{array}{cc} #1 & #2 \\
+                        #3 & #4 \end{array} \right]}
+\DeclareMathOperator{\noncross}{NC} % noncrossing partitions
+\DeclareMathOperator{\noncrossadj}{NCAT} % noncrossing partitions with adjacent
+                                % transpositions (only)
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\ad}{ad}
+\newcommand{\real}{\mbox{\rm Re}}
+\newcommand{\imag}{\mbox{\rm Im}}
+\newcommand{\Stab}{\mbox{\rm Stab}}
+% notation for multi-index operations
+\DeclareMathOperator{\ND}{ND}
+\DeclareMathOperator{\NA}{NA}
+\DeclareMathOperator{\None}{N1}
+\DeclareMathOperator{\B01}{B}
+
+%bold face caps
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Aff}{{\mathbb A}}
+\newcommand{\Proj}{{\mathbb P}}
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\Quat}{{\mathbb H}}
+\newcommand{\F}{{\mathbb F}}
+\newcommand{\A}{{\mathbb A}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\N}{{\mathbb N}}
+
+\newcommand{\toppauli}{\mbox{\small \rm top}}
+\newcommand{\psiG}{\ket{\psi_{G}}}
+\newcommand{\mathfrik}{ }
+\newcommand{\1}{{\mathbb 1}}
+
+\newcommand{\sex}{\textbf{Symbolic Ex.} }
+\newcommand{\eex}{\textbf{Explicit Ex.} }
+
+%bold face italics for definitions
+\font\bfit=cmbxti10
+
+
+
+
+%\title{\textbf{Classification of Set Structures:} A Novice Attempt}
+
+%\author{Alexander J. Heilman}
+
+%    \pagestyle{myheadings}
+%\markright{Set Structures}
+ %  \setlength{\parindent}{0in}
+
+%\date{revised: 30 July 2018}
+
+%% \author{David W. Lyons}
+%% \author{Nathaniel P. Gibbons}
+%% \author{Mark A. Peters}
+%% \author{Daniel J. Upchurch}
+%% \author{Scott N. Walck}
+%% \author{Ezekiel W. Wertz}
+
+% arXiv version 1 submitted 9/5/2016
+% j math phys submission 9/22/2016, minor typos fixed since arXiv v1
+
+
+
+
+
+
+%%% \title and \author *after* ``\begin{document}" for revtex aip style
+%\title{Local unitary stabilizers of symmetric hypergraph states}
+%\author{David W. Lyons, Nathaniel P. Gibbons, Mark A. Peters, and Scott N. Walck}
+
+
+%%% check format and placement of \maketitle and abstract for revtex aip j. math. phys. submission
+%%% \title and \author *before* ``\begin{document}" for article style draft
